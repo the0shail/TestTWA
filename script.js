@@ -1,17 +1,20 @@
 const tg = window.Telegram.WebApp;
 
-var params = window
-    .location
-    .search
-    .replace('?','')
-    .split('&')
-    .reduce(
-        function(p,e){
-            var a = e.split('=');
-            p[ decodeURIComponent(a[0])] = decodeURIComponent(a[1]);
-            return p;
-        },
-        {}
-    );
+const query = window.location.search;
+let params = parse(query)
 
-console.log( params['data']);
+function parse(string) {
+    let p = {}
+
+    string.replace("?", "").split("&").forEach(item => {
+        let x = item.split("=")
+        p[decodeURIComponent(x[0])] = decodeURIComponent(x[1])
+    })
+
+    return p;
+}
+
+document.querySelector(".underline").textContent = `Hello ${params.username}!`
+
+
+
