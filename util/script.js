@@ -1,9 +1,9 @@
 // import "./registrated.js"
 // import {parse} from "./util/func";
 
-const tg = window.Telegram.WebApp;
+const WebApp = window.Telegram.WebApp;
 
-console.log(tg.version)
+console.log(WebApp.showAlert(`Добро пожаловать. @${WebApp.WebAppUser.username}`))
 
 
 
