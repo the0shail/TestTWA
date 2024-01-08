@@ -10,13 +10,10 @@ WebApp.MainButton.color = "#2cab37"
 
 
 let buttons = document.querySelectorAll(".btn");
-
 let bucket = []
 
 buttons.forEach((button, j) => {
     let itemNumber = button.getAttribute("data-list-number");
-
-    console.log(itemNumber)
 
     button.addEventListener("click", () => {
         button.setAttribute("open", "");
@@ -113,7 +110,11 @@ function createButton(elem) {
 
 function showContextMenu(obj){
     if (obj.length) {
-        WebApp.MainButton.setText(`Вы выбрали товаров ${obj.length}`);
+        let quantity = 0
+        obj.forEach(item => {
+            quantity = quantity + item.count;
+        })
+        WebApp.MainButton.setText(`Вы выбрали товаров ${quantity}`);
         WebApp.MainButton.show();
 
     } else WebApp.MainButton.hide()
