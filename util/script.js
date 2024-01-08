@@ -112,7 +112,7 @@ function createButton(elem) {
 }
 
 function showContextMenu(obj){
-    if (obj.length >= 1) WebApp.MainButton.hide();
+    if (!obj.length) WebApp.MainButton.hide();
     else {
         WebApp.MainButton.setText(`Вы выбрали товаров ${obj.length}`);
         WebApp.MainButton.show();
