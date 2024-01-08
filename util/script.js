@@ -49,7 +49,7 @@ buttons.forEach(button => {
 
         if (Object.keys(bucket).length) WebApp.MainButton.hide();
         else {
-            WebApp.MainButton.setText(`Вы выбрали товаров ${bucket.length}`);
+            WebApp.MainButton.setText(`Вы выбрали товаров ${Object.keys(bucket).length}`);
             WebApp.MainButton.show();
         }
 
