@@ -11,9 +11,9 @@ WebApp.MainButton.color = "#2cab37"
 
 let buttons = document.querySelectorAll(".btn");
 
-let bucket = {}
+let bucket = []
 
-buttons.forEach(button => {
+buttons.forEach((button, j) => {
     let itemNumber = button.getAttribute("data-list-number");
 
     console.log(itemNumber)
@@ -21,52 +21,59 @@ buttons.forEach(button => {
     button.addEventListener("click", () => {
         button.setAttribute("open", "");
 
-        let {plus, minus, counter, i} = createButton(button);
+        let {plus, minus, counter, count} = createButton(button);
+
+        let foodName = button.parentNode.querySelector(".food_name").textContent;
+        let foodPrice = button.parentNode.querySelector(".food_price").textContent;
+
+        bucket.push({
+            id: itemNumber,
+            name: foodName,
+            count: count,
+            price: foodPrice
+        });
+        showContextMenu(bucket)
 
         plus.addEventListener("click", () => {
-            i++;
-            counter.textContent = i;
-
-            bucket[itemNumber] = i;
-
-            if (Object.keys(bucket).length === 0) WebApp.MainButton.hide();
-            else {
-                WebApp.MainButton.setText(`Вы выбрали товаров ${Object.keys(bucket).length}`);
-                WebApp.MainButton.show();
-            }
+            count++;
+            counter.textContent = count;
+            bucket.forEach((value) => {
+                if (value.id === itemNumber){
+                    value.count = count;
+                }
+            })
+            showContextMenu(bucket)
         })
 
 
         minus.addEventListener("click", () => {
-            i--;
-            counter.textContent = i;
-            bucket[itemNumber] = i;
+            count--;
+            counter.textContent = count;
+            bucket.forEach((value) => {
+                if (value.id === itemNumber){
+                    value.count = count;
+                }
+            })
 
-            if (i <= 0) {
+            if (count <= 0) {
                 minus.remove();
                 plus.remove();
                 counter.remove();
                 button.textContent = "Add";
                 button.removeAttribute("open");
-                delete bucket[itemNumber];
+                bucket.forEach((value, index) => {
+                    if (value.count === 0){
+                        bucket.splice(index, 1);
+                    }
+                })
             }
-
-            if (Object.keys(bucket).length === 0) WebApp.MainButton.hide();
-            else {
-                WebApp.MainButton.setText(`Вы выбрали товаров ${Object.keys(bucket).length}`);
-                WebApp.MainButton.show();
-            }
+            showContextMenu(bucket)
         })
-
-
-
-
-
     })
 })
 
 Telegram.WebApp.onEvent("mainButtonClicked", () => {
-    WebApp.sendData("Hello world")
+    WebApp.sendData(bucket)
 })
 
 let usercard = document.getElementById("usercard");
@@ -78,7 +85,7 @@ usercard.appendChild(p);
 
 
 function createButton(elem) {
-    let i = 1;
+    let count = 1;
     elem.textContent = ''
     let divElement = document.createElement("div");
     divElement.classList.add("flex", "justify-center");
@@ -94,14 +101,22 @@ function createButton(elem) {
 
     let counter = document.createElement('span');
     counter.classList.add("top-0", "right-2", "lowercase", "bg-orange-500", "rounded-full", "flex", "justify-center", "text-lg", "text-white", "items-center", "font-bold", "absolute", "h-[30px]", "w-[30px]")
-    counter.textContent = 1
+    counter.textContent = count
 
     let parent = elem.parentNode;
 
     parent.appendChild(divElement)
     parent.appendChild(counter)
 
-    return {plus, minus, counter, i}
+    return {plus, minus, counter, count}
+}
+
+function showContextMenu(obj){
+    if (obj.length >= 1) WebApp.MainButton.hide();
+    else {
+        WebApp.MainButton.setText(`Вы выбрали товаров ${obj.length}`);
+        WebApp.MainButton.show();
+    }
 }
 
 // <div className="flex justify-center">
