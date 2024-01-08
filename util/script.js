@@ -12,9 +12,6 @@ WebApp.MainButton.color = "#2cab37"
 let buttons = document.querySelectorAll(".btn");
 let bucket = []
 
-
-document.getElementById("username").innerText = "Гость";
-
 buttons.forEach((button, j) => {
     let itemNumber = button.getAttribute("data-list-number");
 
