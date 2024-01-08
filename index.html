@@ -8,12 +8,17 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 
-<div class="w-[400px] mx-auto mt-[200px] mb-[300px]">
+<div class="w-[300px] mx-auto mt-8">
     <div class="grid grid-cols-2 gap-4">
         <div class="block text-center mb-8">
             <img src="https://static-00.iconduck.com/assets.00/hamburger-emoji-2048x1780-gc068svc.png" class="w-[100px] mx-auto mb-2" alt="">
             <h3 class="text-base font-medium font-gray-700 mb-4">Burger - <span class="font-gray-900 font-bold">$4.99</span></h3>
-            <button class="btn bg-orange-500 text-white px-6 py-2 uppercase font-bold rounded-lg" data-list-number="1">Add</button>
+            <span class="btn text-white uppercase font-bold rounded-lg bg-inherit p-0" data-list-number="1">
+                <button class="text-white uppercase font-bold rounded-lg bg-red-500 text-center w-[30px] h-[30px]">-</button>
+                <button class="text-white uppercase font-bold rounded-lg bg-green-500 text-center w-[30px] h-[30px]">+</button>
+                <span class="lowercase text-gray-500">x 1</span>
+            </span>
+
         </div>
         <div class="block text-center mb-8">
             <img src="https://static-00.iconduck.com/assets.00/hamburger-emoji-2048x1780-gc068svc.png" class="w-[100px] mx-auto mb-2" alt="">
