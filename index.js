@@ -1,3 +1,22 @@
-import server from "live-server"
+const express = require('express');
+const path = require('path');
+const app = express();
 
-server.start();
+const PORT = process.env.PORT || 3000;
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running at http://localhost:${PORT}`);
+});
+
+// Включаем автоматическую перезагрузку при изменении файлов
+if (process.env.NODE_ENV !== 'production') {
+    const livereload = require('livereload');
+    const server = livereload.createServer();
+    server.watch(__dirname + '/public');
+}
