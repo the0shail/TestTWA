@@ -28,8 +28,6 @@ buttons.forEach(button => {
             counter.textContent = i;
 
             bucket[itemNumber] = i;
-
-            console.log(bucket)
         })
 
 
@@ -46,11 +44,10 @@ buttons.forEach(button => {
                 button.removeAttribute("open");
                 delete bucket[itemNumber];
             }
-            console.log(bucket)
         })
 
 
-        if (bucket == {}) WebApp.MainButton.hide();
+        if (Object.keys(bucket).length) WebApp.MainButton.hide();
         else {
             WebApp.MainButton.setText(`Вы выбрали товаров ${bucket.length}`);
             WebApp.MainButton.show();
