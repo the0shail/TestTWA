@@ -12,6 +12,9 @@ WebApp.MainButton.color = "#2cab37"
 let buttons = document.querySelectorAll(".btn");
 let bucket = []
 
+
+document.getElementById("username").innerText = `${WebApp?.initDataUnsafe?.user?.first_name ?? "Гость"}`;
+
 buttons.forEach((button, j) => {
     let itemNumber = button.getAttribute("data-list-number");
 
@@ -72,13 +75,6 @@ buttons.forEach((button, j) => {
 Telegram.WebApp.onEvent("mainButtonClicked", () => {
     WebApp.sendData(bucket)
 })
-
-let usercard = document.getElementById("usercard");
-
-let p = document.createElement("p");
-p.innerText = `${WebApp.initDataUnsafe.user.first_name}`;
-
-usercard.appendChild(p);
 
 
 function createButton(elem) {
