@@ -13,7 +13,7 @@ let buttons = document.querySelectorAll(".btn");
 let bucket = []
 
 
-document.getElementById("username").innerText = `${WebApp?.initDataUnsafe?.user?.first_name == undefined ? "Гость" : WebApp?.initDataUnsafe?.user?.first_name}`;
+document.getElementById("username").innerText = "Гость";
 
 buttons.forEach((button, j) => {
     let itemNumber = button.getAttribute("data-list-number");
