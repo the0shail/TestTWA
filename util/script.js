@@ -112,11 +112,12 @@ function createButton(elem) {
 }
 
 function showContextMenu(obj){
-    if (!obj.length) WebApp.MainButton.hide();
-    else {
+    if (obj.length) {
         WebApp.MainButton.setText(`Вы выбрали товаров ${obj.length}`);
         WebApp.MainButton.show();
-    }
+
+    } else WebApp.MainButton.hide()
+
 }
 
 // <div className="flex justify-center">
