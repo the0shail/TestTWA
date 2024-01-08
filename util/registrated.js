@@ -1,4 +1,4 @@
-import { parse } from "./util/func.js";
+import { parse } from "./func.js";
 
 const query = window.location.search;
 let params = parse(query)
