@@ -29,7 +29,7 @@ buttons.forEach(button => {
 
             bucket[itemNumber] = i;
 
-            if (Object.keys(bucket).length) WebApp.MainButton.hide();
+            if (Object.keys(bucket).length === 0) WebApp.MainButton.hide();
             else {
                 WebApp.MainButton.setText(`Вы выбрали товаров ${Object.keys(bucket).length}`);
                 WebApp.MainButton.show();
@@ -51,7 +51,7 @@ buttons.forEach(button => {
                 delete bucket[itemNumber];
             }
 
-            if (Object.keys(bucket).length) WebApp.MainButton.hide();
+            if (Object.keys(bucket).length === 0) WebApp.MainButton.hide();
             else {
                 WebApp.MainButton.setText(`Вы выбрали товаров ${Object.keys(bucket).length}`);
                 WebApp.MainButton.show();
