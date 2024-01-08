@@ -15,7 +15,7 @@ buttons.forEach(button => {
     button.addEventListener("click", () => {
         if (WebApp.MainButton.isVisible) WebApp.MainButton.hide();
         else {
-            console.log(item.dataset.listNumber)
+            // console.log(item.dataset.listNumber)
             let list_number = 1;
             WebApp.MainButton.setText(`Вы выбрали товар ${list_number}`);
             item = list_number;
